@@ -1,0 +1,685 @@
+---
+title: Bash
+subtitle: Automate your Work
+format: clean-revealjs
+html-math-method:
+  method: mathjax
+  url: "https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"
+author:
+  - name: Thomas Förster
+date: last-modified
+---
+
+# Bash Basics
+
+## Why bother to use a shell? 
+
+> The shell is like a chat with your computer. It helps you to interact with your computer using text commands.
+
+> The shell is a very productive programming environments. Once mastered, you can automate your work.
+
+![](./images/terminal.png){fig-align="center"}
+
+## CLI Syntax
+
+Most commands follow a similar convention.
+
+``` bash
+$> COMMAND FLAGs
+```
+
+We can modify commands by setting various **flags** (also known as `options`, `parameters`, or, most frequently, `arguments`)
+
+
+## Getting Around Your Shell
+
+- Print working directory `pwd`
+
+	```bash
+	$> pwd
+	```
+	
+- list directory's content `ls`
+
+	```bash
+	$> ls
+	```
+
+- list directory content in more details and in list form `ls -l`
+
+	```bash
+	$> ls -l
+	```
+
+- Let's make the output more human readable
+
+    ```bash
+	$> ls -l -h
+	$> ls -lh
+	$> ls -lh --color=auto -g
+    ```
+
+## {}
+
+- To make life easier we can define an alias.
+
+  ```bash
+  $> alias ll='ls -l --color=auto -g'
+  $> ll
+  ```
+
+
+- Let's dive into a directory via change directory `cd`
+
+	```bash
+	$> cd Desktop
+	$> pwd
+	```
+
+- Let's test error handling of `cd`
+
+	``` bash
+	$> cd "This is a great string."
+	```
+
+- Let's move around with via `cd`
+
+	``` bash
+	$> ls -l -a
+	..
+	.
+	$> cd ..
+	$> cd -
+	$> cd
+	```
+
+## How to Get Help
+
+- using the `--help` option
+- using `man COMMAND`
+
+    ``` bash
+    $> ls --help
+    $> man ls
+    ```
+
+## Basic File/Folder Manipulation
+
+- Let's create a new folder with make directory
+
+    ``` bash
+    $> mkdir sandbox
+    $> cd sandbox
+    ```
+
+- `touch`: create a file.
+
+    ``` bash
+    $> touch myfile01.md
+    ```
+
+- `cp`: copy the file.
+
+    ``` bash
+    $> cp myfile01.md myfile02.md
+    ```
+
+- `mv`: rename/move a file.
+
+    ``` bash
+    $> mv myfile02.md myfile03.md
+    ```
+
+## {}
+
+- `rm`: remove a file
+
+    ``` bash
+    $> touch test.md
+    $> rm test.md
+    ```
+
+- `rm`: remove a folder
+
+    ``` bash
+    $> mkdir testfolder
+    $> rm -r testfolder
+    ```
+
+- create several folders and files
+
+    ``` bash
+    $> mkdir aaa bbb ccc
+    $> mkdir --parents one/two/three
+    $> touch 01.log 02.log 03.log 04.log
+    ```
+
+## Wildcards
+
+- The `?` wildcard matches one character. The `*` wildcard matches zero or more characters.
+
+	``` bash
+	$> rm -rf *
+	```
+
+## Succession of Commands
+
+- going from command to command (next) `;`
+
+	``` bash
+	$> mkdir one/two/three; cd one; touch 01 02 03; mv 0* two/
+	```
+	
+	- What went wrong?
+
+- going from command to command if successful via `&&`
+
+	``` bash
+	$> mkdir -p one/two/three && cd one && touch 01 02 03 && mv 0* two/
+	```
+
+## Using the History
+
+- You've got a bash history
+
+``` bash
+$ history
+```
+
+- You can access it via `!NUM`
+
+``` bash
+$ !656
+```
+
+- You can access your last command via
+
+``` bash
+$ !-1
+$ !!
+```
+
+## Using Redirection
+   
+`>` or `>>` is used for redirecting either to a command or a file.
+
+- Let's print something to the shell
+
+``` bash
+$> echo "Hallo world!"
+```
+
+-  Two options overwrite (create) `>` or  append `>>`.
+
+ ``` bash
+ $ echo "Hallo world!" > myfile.md
+ $ echo "Hallo world!" >> myfile.md
+ ```
+
+- How to view the content of files
+
+- `cat`: concatenate, it is not an editor => go for `vim` or `nano`
+	
+	``` bash
+	$> cat file1.md
+	$> cat file1.md file2.md > combi.md
+	```
+
+## `find`, `xargs` and `grep`
+
+- Let's find all files with `find`
+
+``` bash
+$> find . -type f
+```
+
+- Find all markdown files
+
+``` bash
+$> mkdir folder.md
+$> touch file.md
+$> find . -name "*.md"
+$> find . -name "*.md" -type f
+$> find . -name "*.md" -type d
+```
+
+## {}
+
+- Let's get some more information via `ls -l` using `xargs`
+
+``` bash
+$> find . -name "*.md" -type f | xargs ll
+```
+
+- Let's add a file with spaces into the mix, 
+
+``` bash
+$> touch 'a file with spaces.md'
+$> find . -name "*.md" -type f | xargs ls -l
+```
+
+- What happend?
+
+``` bash
+$> find . -name "*.md" -type f -print0 | xargs -0 ls -l
+```
+
+- Let's find all `*.md` files which contain the word "Hallo", using `grep -l`.
+
+``` bash
+$> find . -type f -name '*.md' -print0 | xargs -0 grep -l 'Hallo'
+```
+
+- Let's get more information about those file via `ls -l`
+
+``` bash
+$> find . -type f -name '*.md' -print0 | xargs -0 grep -l 'Hallo' | xargs ls -l
+```
+
+## Summary
+
+We have learned:
+
+- Getting around the shell
+- Basic file/folder manipulation
+- Getting information and help
+
+# Bash Scripting
+
+<mark> <<< Everything is considered to be a String >>> </mark>
+
+## Variables
+
+*Strings and Integers*
+
+``` bash
+$> var=1
+$> echo $var
+$> var="Hallo world!"
+$> echo "$var"
+$> echo '$var'
+$> var1="Hallo"
+$> var2="world!"
+$> varN="$var1 $var2"
+$> echo $varN
+```
+
+*Arrays*
+
+``` bash
+$> array=( 'two' 'three' 'four' )
+$> echo "$array"
+```
+
+<div style="font-size:24px;">
+- Only the first element is accessed!
+</div>
+
+## {}
+
+- Access all elements
+
+    ``` bash
+    $> echo "${array[@]}" 
+    ```
+
+- Number of elements via `#`
+
+	``` bash
+	$> echo "${#array[@]}"
+	```
+
+- You can access elements with integers (stating with 0)
+	
+	``` bash
+	$> echo "${array[2]}"
+	$> echo "${array[0]}"
+	$> echo "${array[-1]}"
+	```
+
+
+## Integer Arithmetics
+
+`$((...))` is called arithmetic expansion. It can be used for calculations incl. arithmetical conditionals. It is derived from `let` (Low Execution Time integer). 
+
+- calculations
+
+``` bash
+$> let 'new1=3*12'; echo "$new1"
+$> new2=$((3*12)); echo "$new2"
+```
+
+- conditionals
+
+```bash
+$> i=0
+$> let 'i>2'; echo $? %false 1
+1
+$> let 'i<2'; echo $? %true 0
+0
+```
+
+## `[[..]]` Compound Command + `if`
+
+- General-purpose **compound command** (`[[...]]`)
+- It is based on the derivative of the older `test` command (`[...]`). 
+- String comparison (ex. `==`)
+
+    ``` bash
+    $> var="Nice"
+    $> if [[ "$var" == "Bad" ]]; then echo "Bad example!"; else echo "Good example"; fi
+    ```
+
+- Number testing (ex. `-eq`)
+
+	``` bash
+	$> var="10"
+	$> if [[ "$var" -eq 10 ]]
+	then 
+	echo "Equal 10"
+	else 
+	echo "Not 10"
+	fi
+	```
+
+## {}
+
+- File testing and boolean operation (`-f`, `-r`, `&&`)
+
+	``` bash
+	$> FILE="README.md"
+	$> if [[ -f "$FILE" && -r "$FILE" ]]
+	then 
+	  echo "File exists and is readable!"
+	else 
+	  echo "File $FILE does not exist"
+	fi
+	```
+
+- Checking if the folder is empty. 
+
+    ``` bash
+    $> if  [[ -z "$(ls -A .)" ]]; then echo "Empty"; else echo "Not empty"; fi
+    $> if  [[ ! -z "$(ls -A .)" ]]; then echo "Not empty"; else echo "Empty"; fi
+    ```
+
+## Loops
+
+#### *for* Loop
+
+- Going through elements in an Array. Let's give it a try with:
+
+```bash
+$> array=( 'two' 'three' 'four' )
+$> for item in $array
+do
+  echo "$item trees"
+done
+```
+
+- Not working, this is much better:
+
+```bash
+$> for item in ${array[@]}
+do
+  echo "$item trees"
+done
+```
+
+## {}
+
+- Using a Counter
+
+	``` bash
+	$> for (( i=0; i<5; ++i ))
+	do
+	  echo "${array[i]} trees"
+	done
+	```
+
+- Let's make it better
+
+    ``` bash
+    $> for (( i=0; i<${#array[@]}; ++i ))
+    do
+      echo "${array[i]} trees"
+    done
+    ```
+
+## Functions
+
+- are like mini bash scripts
+- Let's create a function from this line
+
+    ``` bash
+    $> function findfiles {
+    	local filetype="$1"
+    	find . -type f -name "*.$filetype" -print0 | xargs -0 ls -l
+    }
+    ```
+
+- Let's check if an argument is provided: `-z` 
+
+    ``` bash
+    if [[ -z "$filetype" ]]; then
+        echo "Error: You must provide a file extension as an argument."
+        return 1
+    fi
+    ```
+
+## {}
+
+Result:
+
+``` bash
+$> function findfiles {
+	local filetype="$1"
+	
+	if [[ -z $filetype ]]; then
+	    echo "Error: You must provide a file extension as an argument."
+	    return 1
+	fi
+
+	find . -type f -name "*.$filetype" -print0 | xargs -0 ls -l
+}
+$> findfiles md
+```
+
+## Special Variables
+
+- `$0` .. currently executing command
+- `$1..$9` .. argument number 1 to 9
+- `$#`.. number of arguemts
+- `$@` .. all arguments
+- `$?` .. last exit status
+- `$$` .. current pid of the current shell
+
+``` bash
+$> function myfunc {
+echo "$0"
+echo "$1"
+echo "$#"
+echo "$@"
+echo "$?"
+echo "$$"
+}
+$> myfunc "Check!"
+```
+
+
+## Script Layout
+
+``` bash
+#!/usr/bin/env bash
+# SPDX-FileCopyrightText: Copyright (c) 2025 Max Musterman
+# SPDX-License-Identifier: MIT
+
+# Name        : projectA
+# Version     : 0.1.0
+# Description : Creates basic project layout
+# Required    : -
+
+#==========#
+#== INIT ==#
+#==========#
+
+#================#
+#== USER INPUT ==#
+#================#
+
+#===============#
+#== FUNCTIONS ==#
+#===============#
+
+
+#---------------#
+
+function testing {
+  echo "Here are all my tests."
+}
+
+#---------------#
+
+function main {
+  echo "I am looking for content!"
+}
+
+#==========#
+#== MAIN ==#
+#==========#
+testing
+main
+```
+
+## The Challenge
+
+Task: Create a Project Template
+
+``` bash
+$> bash ../myscript.sh
+.
+├── a_literature
+├── b_geometry
+├── c_setup
+├── d_calculations
+├── e_analysis
+├── f_documentation
+└── README.md
+```
+
+## Hints
+
+``` bash
+mydirs=(
+"a_literature"
+"b_geometry"
+"c_setup"
+"d_calculations"
+"e_analysis"
+"f_documentation"
+)
+```
+<p style="margin:20px;">
+
+``` bash
+myfiles=(
+"README.md"
+)
+```
+
+- Create two functions:
+
+``` bash
+function create_dirs {}
+function create_files {}
+```
+
+## One Solution
+
+``` bash
+#!/usr/bin/env bash
+# SPDX-FileCopyrightText: Copyright (c) 2025 Max Musterman
+# SPDX-License-Identifier: MIT
+
+# Name        : foobar
+# Version     : 0.1.0
+# Description : Foo for Bar
+# Required    : -
+# Note        : -
+
+#==========#
+#== INIT ==#
+#==========#
+mydirs=(
+"a_literature"
+"b_geometry"
+"c_setup"
+"d_calculations"
+"e_analysis"
+"f_documentation"
+)
+
+myfiles=(
+"README.md"
+)
+
+#================#
+#== USER INPUT ==#
+#================#
+
+#===============#
+#== FUNCTIONS ==#
+#===============#
+
+function create_dirs {
+  local inputdirs=("$@")
+  for dir in ${inputdirs[@]}
+  do 
+    mkdir $dir 
+  done
+}
+
+#---------------#
+
+function create_files {
+  local inputfiles=("$@")
+  for file in ${inputfiles[@]}
+  do 
+    touch $file
+  done
+}
+
+#---------------#
+
+function test_empty_dir {
+  if  [[ ! -z "$(ls -A .)" ]]; then 
+    echo "Folder not empty! Could not create project!"
+    exit 1
+  fi
+}
+
+#---------------#
+
+function testing {
+  test_empty_dir
+}
+
+#---------------#
+
+function main {
+  create_dirs ${mydirs[@]}
+  create_files ${myfiles[@]}
+  ls -l
+}
+
+#==========#
+#== MAIN ==#
+#==========#
+testing
+main
+```
+
+# Script Management
+
+...
+

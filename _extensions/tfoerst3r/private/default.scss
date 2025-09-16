@@ -1,0 +1,495 @@
+/*===================*/
+/*-- scss:defaults --*/
+/*===================*/
+
+/*-- Font --*/
+/* @import url('https://fonts.googleapis.com/css?family=Roboto:200,200i,300,300i,350,350i,400,400i&display=swap'); */
+/* src: url('fonts/Font_Text.woff2') format('woff2'); */
+
+@font-face {
+  font-family: 'Noto Sans';
+  src: url('https://fonts.googleapis.com/css?family=Roboto:200,200i,300,300i,350,350i,400,400i&display=swap');
+  font-weight: normal;
+  font-style: normal;
+}
+
+$font-family-sans-serif: 'Noto Sans', sans-serif !default;
+$presentation-heading-font: 'Noto Sans', sans-serif !default;
+
+/*================*/
+/*-- scss:rules --*/
+/*================*/
+
+$presentation-font-size-root: 2.2rem;
+$presentation-h3-font-size: calc(1.25 * $presentation-font-size-root);
+$presentation-h2-font-size: calc(1.50 * $presentation-font-size-root);
+$presentation-h1-font-size: calc(1.75 * $presentation-font-size-root);
+
+/*-- Presentation --*/
+$presentation-slide-text-align: left;
+$presentation-title-slide-text-align: left;
+
+/*-- Colors --*/
+$body-color: #002864;
+$body-bg: #ffffff;
+
+/*-- Custom Colors --*/
+$darkblue: #002864;
+$lightblue: #cdd8ec;
+$helmholtzblue: #005aa0;
+
+/*-- Title Page --*/
+$titlepadding: 8%;
+
+/*-- General Sizing --*/
+$hrulerY: 5.0vh;
+$borderthickness: 2px; /* border of the horizontal line, take it 2x */
+$heightoffset: 6.0vh; /* approximated space of the top head */
+$indentdX: 5vw;
+$offset-factor: 2.0; /* should be 2 */
+
+/*-- Footer --*/
+$footerpadding: 0.5rem;
+$footerheight: 3.1vh;
+
+/*-- Logo --*/
+$logo-top: 3.0vh;
+
+/*-- Resulting Sizes --*/
+$max-slide-height: calc(100vh - $heightoffset - $offset-factor * $hrulerY - $footerheight - $presentation-h2-font-size);
+$slide-top: calc($offset-factor * $hrulerY + $heightoffset + 2 * $borderthickness);
+
+/*--Paths--*/
+$backgroundimagedir:'../../../../../custom/images/';
+
+/*-- Custom Background images --*/
+@mixin backgroundimage($filename, $position: bottom right, $width:100vw, $opacity: 00, $margin: 0) {
+  
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background: #{$body-bg}#{$opacity};
+    z-index: 1; // Adjust the stacking order as needed
+  }
+  
+  background: {
+    image: url(#{$backgroundimagedir}#{$filename});
+    position: $position;
+    repeat: no-repeat;
+    size: $width auto;
+  }
+  margin: $margin;
+}
+
+/*********************************************
+ * Imports
+ *********************************************/
+
+@import './additional.scss';
+
+/*********************************************
+ * Global Custom Settings
+ *********************************************/
+%vertical-spaced-even {
+    display: flex;
+    flex-direction: column; 
+    justify-content: space-evenly;
+    height: 100% !important;
+    max-height: $max-slide-height;
+}
+
+%white {
+    display: flex; /*flex;*/
+    width: 100%;
+    flex-direction: column;
+    justify-content: center;
+    background-color: white;
+    color: $body-color;
+    margin: 0.6rem 0 0.6rem 0;
+    padding: 0.6rem 0.6rem 0.6rem 0.6rem;
+    border: 0 solid $body-color !important;
+    border-radius: 1.0rem;
+    border-color: #00000000; 
+    p {
+        margin: 0;
+        padding:0 0.5rem 0 0.5rem ;
+    }
+}
+
+.reveal .slides {
+    width: calc(100vw - 2*$indentdX) !important;
+    height: calc(100vh - $heightoffset) !important;
+    transform: none !important;
+    inset: 0 !important;
+    .present {
+        display: flex !important;
+        flex-flow: column !important;
+        justify-content: stretch !important;
+        flex-direction: column;
+    }
+
+}
+
+.slide {
+    width: 100%;
+    height: $max-slide-height
+}
+
+.slide-height {
+    max-height: $max-slide-height !important;
+    min-height: $max-slide-height !important;
+}
+
+.backgrounds {
+    /*-- custom title layout --*/
+    .quarto-title-block {
+        @include backgroundimage('titlepage.svg');
+        /*
+        @include backgroundimage(
+            'logo_dresden-concept.svg', 
+            calc(100% - $rightpadding) calc(100% - 3.0 * $footerpadding - $footerheight), 12vw 
+        );
+        */
+    }
+}
+
+/*********************************************
+ * Additional Settings for Default Envs.
+ *********************************************/
+
+h1, h2, h3 {
+  color: $body-color;
+}
+
+/*
+h1::before {
+  content: '\00a0';
+  font-weight: normal;
+  color: #999;
+}
+*/
+
+h2 {
+    padding-bottom: calc(1.5 * $hrulerY) !important;
+}
+
+/*
+h2::before {
+    content: '\00a0';
+    font-weight: normal;
+    color: #999;
+}
+*/
+
+.reveal .slides section.smaller h2 {
+    font-size: $presentation-h2-font-size
+}
+
+.reveal .slides section.smaller h2::after {
+    border: 0 solid $body-color;
+}
+
+h3::after {
+  content: '\00a0'; /* This represents the non-breaking space character */
+  font-weight: normal; /* Example styling */
+  color: #999; /* Example styling */
+}
+
+/*********************************************
+ * Title Slide
+ *********************************************/
+
+.reveal .quarto-title-block {
+    
+    h1 {
+        padding-top: $titlepadding;
+        color: $body-color;
+    }
+    
+    h1::after {
+        border: 0 solid $body-color;
+    }
+    
+    h1::before {
+        content: '';
+    }
+
+}
+
+/*********************************************
+ * Custom Settings
+ *********************************************/
+
+.reveal .footer {
+    width: 100vw !important;
+    height: $footerheight !important;
+    z-index: 10 !important;
+    background-color: $body-color;
+    padding-top: $footerpadding;
+    padding-left: $indentdX;
+    padding-bottom: $footerpadding;
+    display: flex !important;
+    justify-content: space-between;
+    align-items: center;
+    bottom: 0 !important;
+    position: fixed !important;
+    z-index: -2 !important;
+    
+    p {
+        font-size: 100%;
+    }
+}
+
+.reveal .slide-menu-button {
+    z-index: 11 !important;
+}
+
+.slide-logo {
+    position: absolute !important;
+    display: block !important;
+    top: $logo-top !important;
+    right: calc($indentdX/3) !important;
+    max-height: 6% !important;
+    width: auto !important;
+    color: $body-bg !important;
+    margin: 0 !important;
+    z-index: -1 !important;
+}
+
+.search-bar {
+    color: gray;
+    background: white;
+    font-size: 1rem;
+    border-radius: 1rem;
+    width: 50%;
+    margin: 1rem;
+    display: flex;
+    padding: 0.25rem;
+
+    p {
+        margin: 0;
+    }
+
+    img {
+        color: inherit !important;
+        height: 1rem;
+        margin: 0;
+        padding-left: 1rem;
+        padding-right: 0.5rem;
+    }
+}
+
+.reveal .slide-menu-button {
+    z-index: 11 !important;
+}
+
+.panel-tabset {
+    a {
+        color: $body-color;
+        background-color: #bbb;
+        padding: 0.75rem;
+        margin: 0.75rem;
+        border: thick solid $body-color;
+        border-radius: 0.75rem;
+    }
+    
+    .panel-tabset-tabby {
+        border: 0;
+    }
+    
+    .panel-tabset-tabby::after {
+        content:'';
+        position: absolute;
+        display: block;
+        width: 100%;
+        border: 0 solid $body-color;
+        border-radius:1px;
+        transform: translate(0, 1px);
+    }
+
+}
+
+/*********************************************
+ * Slide Number
+ *********************************************/
+
+.slide-number {
+    margin-right: calc($indentdX/3);
+    top: unset !important;
+    bottom: calc($footerpadding + 0.75 * 3px) !important;
+    color: $body-bg;
+    z-index: -1 !important;
+
+    .slide-number-a {
+      font-size: calc($footerheight - 2 * $footerpadding);
+      
+    }
+}
+
+/*********************************************
+ * Custom Classes
+ *********************************************/
+
+.quote {
+    margin: 1vh 0 1vh 0;
+    width: 100%;
+    color: $body-color !important;
+    background-color: $lightblue;
+    border-radius:2px;
+    border-left: 0.5rem solid $body-color !important;
+    padding-left: 2rem;
+    p {
+        display: block;
+        float: left;
+    }
+}
+
+.middlepoint {
+    max-height: $max-slide-height;
+    display: flex;
+    width: 100%;
+    height: 100%;
+    align-items: center;
+    justify-content: center;
+}
+
+.centered {
+    p{
+        display: flex;
+        width: 100%;
+        max-height: $max-slide-height;
+        justify-content: center;
+    }
+}
+
+.middle {
+    display: flex;
+    width: 100%;
+    height: 100%;
+    max-height: $max-slide-height;
+    align-items: center;
+}
+
+.right {
+  float: left;
+  width: auto;
+  border: 0px solid #73AD21;
+  padding: 0px;
+}
+
+.left {
+  float: right;
+  width: auto;
+  border: 0px solid #73AD21;
+  padding: 0px;
+}
+
+iframe {
+    width: 71.43% !important;
+    height: 71.43% !important;
+    -webkit-transform: scale(1.4);
+    transform: scale(1.4);
+    -webkit-transform-origin: 0 0;
+    transform-origin: 0 0;
+    transform: translate(-50%, -50%);
+}
+  
+
+/*********************************************
+ * Boxes
+ *********************************************/
+
+.white {
+    @extend %white;
+}
+
+.lightblue {
+    @extend %white;
+    background-color: $lightblue;
+    color: $darkblue;
+}
+
+.blue {
+    @extend %white;
+    background-color: $body-color;
+    color: $lightblue;
+}
+
+.green {
+    @extend %white;
+    background-color: #144d28;
+    color: #cecece;
+}
+
+.orange {
+    @extend %white;
+    background-color: #e08603;
+    color: #2f3033;
+}
+
+.red {
+    @extend %white;
+    background-color: #ed4c31;
+    color: #2f3033;
+}
+
+.horizontal-spaced-even {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+}
+
+.vertical-spaced-even {
+    @extend %vertical-spaced-even;
+}
+
+.tab-disabled {
+    width: max-content;
+    p {
+        background-color: #aaa; 
+        border-radius:0.5rem;
+        padding: 0.5rem;
+    }
+}
+
+.tab-active {
+    width: max-content;
+    p {
+        background-color: $body-bg; 
+        border: 1px solid $body-color; 
+        border-radius: 0.5rem; 
+        padding: 0.5rem;
+    }
+}
+
+.columns {
+    margin-top: 0 !important;
+    display: flex !important;
+    justify-content: space-evenly;
+    
+    .column {
+        align-self: center;
+    }
+}
+
+.small-space {
+    margin-top: 2vh;
+}
+.space {
+    margin-top: 6vh;
+}
+.big-space {
+    margin-top: 12vh;
+}
+
+
+
+
+
+
+
+
