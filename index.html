@@ -10,7 +10,7 @@
   <meta name="generator" content="quarto-1.7.31">
 
   <meta name="author" content="Thomas Förster">
-  <meta name="dcterms.date" content="2025-09-16">
+  <meta name="dcterms.date" content="2025-09-17">
   <title>Bash</title>
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
@@ -205,7 +205,7 @@ Thomas Förster
 </div>
 </div>
 
-  <p class="date">September 16, 2025</p>
+  <p class="date">September 17, 2025</p>
 </section>
 <section>
 <section id="bash-basics" class="title-slide slide level1 center">
@@ -323,32 +323,24 @@ Thomas Förster
 <section id="using-the-history" class="slide level2">
 <h2>Using the History</h2>
 <ul>
-<li>You’ve got a bash history</li>
-</ul>
-<div class="sourceCode" id="cb21"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb21-1"><a href=""></a><span class="ex">$</span> history</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<ul>
-<li>You can access it via <code>!NUM</code></li>
-</ul>
-<div class="sourceCode" id="cb22"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb22-1"><a href=""></a><span class="ex">$</span> !656</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<ul>
-<li>You can access your last command via</li>
-</ul>
+<li><p>You’ve got a bash history</p>
+<div class="sourceCode" id="cb21"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb21-1"><a href=""></a><span class="ex">$</span> history</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
+<li><p>You can access it via <code>!NUM</code></p>
+<div class="sourceCode" id="cb22"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb22-1"><a href=""></a><span class="ex">$</span> !656</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
+<li><p>You can access your last command via</p>
 <div class="sourceCode" id="cb23"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb23-1"><a href=""></a><span class="ex">$</span> !-1</span>
-<span id="cb23-2"><a href=""></a><span class="ex">$</span> !!</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb23-2"><a href=""></a><span class="ex">$</span> !!</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
+</ul>
 </section>
 <section id="using-redirection" class="slide level2">
 <h2>Using Redirection</h2>
 <p><code>&gt;</code> or <code>&gt;&gt;</code> is used for redirecting either to a command or a file.</p>
 <ul>
-<li>Let’s print something to the shell</li>
-</ul>
-<div class="sourceCode" id="cb24"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb24-1"><a href=""></a><span class="ex">$</span><span class="op">&gt;</span> echo <span class="st">"Hallo world!"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<ul>
-<li>Two options overwrite (create) <code>&gt;</code> or append <code>&gt;&gt;</code>.</li>
-</ul>
+<li><p>Let’s print something to the shell</p>
+<div class="sourceCode" id="cb24"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb24-1"><a href=""></a><span class="ex">$</span><span class="op">&gt;</span> echo <span class="st">"Hallo world!"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
+<li><p>Two options overwrite (create) <code>&gt;</code> or append <code>&gt;&gt;</code>.</p>
 <div class="sourceCode" id="cb25"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb25-1"><a href=""></a><span class="ex">$</span> echo <span class="st">"Hallo world!"</span> <span class="op">&gt;</span> myfile.md</span>
-<span id="cb25-2"><a href=""></a><span class="ex">$</span> echo <span class="st">"Hallo world!"</span> <span class="op">&gt;&gt;</span> myfile.md</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<ul>
+<span id="cb25-2"><a href=""></a><span class="ex">$</span> echo <span class="st">"Hallo world!"</span> <span class="op">&gt;&gt;</span> myfile.md</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
 <li><p>How to view the content of files</p></li>
 <li><p><code>cat</code>: concatenate, it is not an editor =&gt; go for <code>vim</code> or <code>nano</code></p>
 <div class="sourceCode" id="cb26"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb26-1"><a href=""></a><span class="ex">$</span><span class="op">&gt;</span> cat <span class="ex">file1.md</span></span>
@@ -358,41 +350,31 @@ Thomas Förster
 <section id="find-xargs-and-grep" class="slide level2">
 <h2><code>find</code>, <code>xargs</code> and <code>grep</code></h2>
 <ul>
-<li>Let’s find all files with <code>find</code></li>
-</ul>
-<div class="sourceCode" id="cb27"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb27-1"><a href=""></a><span class="ex">$</span><span class="op">&gt;</span> find <span class="bu">.</span> <span class="at">-type</span> f</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<ul>
-<li>Find all markdown files</li>
-</ul>
+<li><p>Let’s find all files with <code>find</code></p>
+<div class="sourceCode" id="cb27"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb27-1"><a href=""></a><span class="ex">$</span><span class="op">&gt;</span> find <span class="bu">.</span> <span class="at">-type</span> f</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
+<li><p>Find all markdown files</p>
 <div class="sourceCode" id="cb28"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb28-1"><a href=""></a><span class="ex">$</span><span class="op">&gt;</span> mkdir <span class="ex">folder.md</span></span>
 <span id="cb28-2"><a href=""></a><span class="ex">$</span><span class="op">&gt;</span> touch <span class="ex">file.md</span></span>
 <span id="cb28-3"><a href=""></a><span class="ex">$</span><span class="op">&gt;</span> find <span class="bu">.</span> <span class="at">-name</span> <span class="st">"*.md"</span></span>
 <span id="cb28-4"><a href=""></a><span class="ex">$</span><span class="op">&gt;</span> find <span class="bu">.</span> <span class="at">-name</span> <span class="st">"*.md"</span> <span class="at">-type</span> f</span>
-<span id="cb28-5"><a href=""></a><span class="ex">$</span><span class="op">&gt;</span> find <span class="bu">.</span> <span class="at">-name</span> <span class="st">"*.md"</span> <span class="at">-type</span> d</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb28-5"><a href=""></a><span class="ex">$</span><span class="op">&gt;</span> find <span class="bu">.</span> <span class="at">-name</span> <span class="st">"*.md"</span> <span class="at">-type</span> d</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
+</ul>
 </section>
 <section id="section-2" class="slide level2">
 <h2></h2>
 <ul>
-<li>Let’s get some more information via <code>ls -l</code> using <code>xargs</code></li>
-</ul>
-<div class="sourceCode" id="cb29"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb29-1"><a href=""></a><span class="ex">$</span><span class="op">&gt;</span> find <span class="bu">.</span> <span class="at">-name</span> <span class="st">"*.md"</span> <span class="at">-type</span> f <span class="kw">|</span> <span class="fu">xargs</span> ll</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<ul>
-<li>Let’s add a file with spaces into the mix,</li>
-</ul>
+<li><p>Let’s get some more information via <code>ls -l</code> using <code>xargs</code></p>
+<div class="sourceCode" id="cb29"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb29-1"><a href=""></a><span class="ex">$</span><span class="op">&gt;</span> find <span class="bu">.</span> <span class="at">-name</span> <span class="st">"*.md"</span> <span class="at">-type</span> f <span class="kw">|</span> <span class="fu">xargs</span> ll</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
+<li><p>Let’s add a file with spaces into the mix,</p>
 <div class="sourceCode" id="cb30"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb30-1"><a href=""></a><span class="ex">$</span><span class="op">&gt;</span> touch <span class="st">'a file with spaces.md'</span></span>
-<span id="cb30-2"><a href=""></a><span class="ex">$</span><span class="op">&gt;</span> find <span class="bu">.</span> <span class="at">-name</span> <span class="st">"*.md"</span> <span class="at">-type</span> f <span class="kw">|</span> <span class="fu">xargs</span> ls <span class="at">-l</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<ul>
-<li>What happend?</li>
+<span id="cb30-2"><a href=""></a><span class="ex">$</span><span class="op">&gt;</span> find <span class="bu">.</span> <span class="at">-name</span> <span class="st">"*.md"</span> <span class="at">-type</span> f <span class="kw">|</span> <span class="fu">xargs</span> ls <span class="at">-l</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
+<li><p>What happend?</p>
+<div class="sourceCode" id="cb31"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb31-1"><a href=""></a><span class="ex">$</span><span class="op">&gt;</span> find <span class="bu">.</span> <span class="at">-name</span> <span class="st">"*.md"</span> <span class="at">-type</span> f <span class="at">-print0</span> <span class="kw">|</span> <span class="fu">xargs</span> <span class="at">-0</span> ls <span class="at">-l</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
+<li><p>Let’s find all <code>*.md</code> files which contain the word “Hallo”, using <code>grep -l</code>.</p>
+<div class="sourceCode" id="cb32"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb32-1"><a href=""></a><span class="ex">$</span><span class="op">&gt;</span> find <span class="bu">.</span> <span class="at">-type</span> f <span class="at">-name</span> <span class="st">'*.md'</span> <span class="at">-print0</span> <span class="kw">|</span> <span class="fu">xargs</span> <span class="at">-0</span> grep <span class="at">-l</span> <span class="st">'Hallo'</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
+<li><p>Let’s get more information about those file via <code>ls -l</code></p>
+<div class="sourceCode" id="cb33"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb33-1"><a href=""></a><span class="ex">$</span><span class="op">&gt;</span> find <span class="bu">.</span> <span class="at">-type</span> f <span class="at">-name</span> <span class="st">'*.md'</span> <span class="at">-print0</span> <span class="kw">|</span> <span class="fu">xargs</span> <span class="at">-0</span> grep <span class="at">-l</span> <span class="st">'Hallo'</span> <span class="kw">|</span> <span class="fu">xargs</span> ls <span class="at">-l</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
 </ul>
-<div class="sourceCode" id="cb31"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb31-1"><a href=""></a><span class="ex">$</span><span class="op">&gt;</span> find <span class="bu">.</span> <span class="at">-name</span> <span class="st">"*.md"</span> <span class="at">-type</span> f <span class="at">-print0</span> <span class="kw">|</span> <span class="fu">xargs</span> <span class="at">-0</span> ls <span class="at">-l</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<ul>
-<li>Let’s find all <code>*.md</code> files which contain the word “Hallo”, using <code>grep -l</code>.</li>
-</ul>
-<div class="sourceCode" id="cb32"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb32-1"><a href=""></a><span class="ex">$</span><span class="op">&gt;</span> find <span class="bu">.</span> <span class="at">-type</span> f <span class="at">-name</span> <span class="st">'*.md'</span> <span class="at">-print0</span> <span class="kw">|</span> <span class="fu">xargs</span> <span class="at">-0</span> grep <span class="at">-l</span> <span class="st">'Hallo'</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<ul>
-<li>Let’s get more information about those file via <code>ls -l</code></li>
-</ul>
-<div class="sourceCode" id="cb33"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb33-1"><a href=""></a><span class="ex">$</span><span class="op">&gt;</span> find <span class="bu">.</span> <span class="at">-type</span> f <span class="at">-name</span> <span class="st">'*.md'</span> <span class="at">-print0</span> <span class="kw">|</span> <span class="fu">xargs</span> <span class="at">-0</span> grep <span class="at">-l</span> <span class="st">'Hallo'</span> <span class="kw">|</span> <span class="fu">xargs</span> ls <span class="at">-l</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
 <section id="summary" class="slide level2">
 <h2>Summary</h2>
@@ -446,18 +428,16 @@ Thomas Förster
 <h2>Integer Arithmetics</h2>
 <p><code>$((...))</code> is called arithmetic expansion. It can be used for calculations incl.&nbsp;arithmetical conditionals. It is derived from <code>let</code> (Low Execution Time integer).</p>
 <ul>
-<li>calculations</li>
-</ul>
+<li><p>calculations</p>
 <div class="sourceCode" id="cb39"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb39-1"><a href=""></a><span class="ex">$</span><span class="op">&gt;</span> let <span class="st">'new1=3*12'</span><span class="kw">;</span> <span class="bu">echo</span> <span class="st">"</span><span class="va">$new1</span><span class="st">"</span></span>
-<span id="cb39-2"><a href=""></a><span class="ex">$</span><span class="op">&gt;</span> new2=<span class="va">$((</span><span class="dv">3</span><span class="op">*</span><span class="dv">12</span><span class="va">))</span><span class="kw">;</span> <span class="bu">echo</span> <span class="st">"</span><span class="va">$new2</span><span class="st">"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<ul>
-<li>conditionals</li>
-</ul>
+<span id="cb39-2"><a href=""></a><span class="ex">$</span><span class="op">&gt;</span> new2=<span class="va">$((</span><span class="dv">3</span><span class="op">*</span><span class="dv">12</span><span class="va">))</span><span class="kw">;</span> <span class="bu">echo</span> <span class="st">"</span><span class="va">$new2</span><span class="st">"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
+<li><p>conditionals</p>
 <div class="sourceCode" id="cb40"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb40-1"><a href=""></a><span class="ex">$</span><span class="op">&gt;</span> i=0</span>
 <span id="cb40-2"><a href=""></a><span class="ex">$</span><span class="op">&gt;</span> let <span class="st">'i&gt;2'</span><span class="kw">;</span> <span class="bu">echo</span> <span class="va">$?</span> %false 1</span>
 <span id="cb40-3"><a href=""></a><span class="ex">1</span></span>
 <span id="cb40-4"><a href=""></a><span class="ex">$</span><span class="op">&gt;</span> let <span class="st">'i&lt;2'</span><span class="kw">;</span> <span class="bu">echo</span> <span class="va">$?</span> %true 0</span>
-<span id="cb40-5"><a href=""></a><span class="ex">0</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb40-5"><a href=""></a><span class="ex">0</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
+</ul>
 </section>
 <section id="compound-command-if" class="slide level2">
 <h2><code>[[..]]</code> Compound Command + <code>if</code></h2>
@@ -497,20 +477,18 @@ Thomas Förster
 <h2>Loops</h2>
 <h4 id="for-loop"><em>for</em> Loop</h4>
 <ul>
-<li>Going through elements in an Array. Let’s give it a try with:</li>
-</ul>
+<li><p>Going through elements in an Array. Let’s give it a try with:</p>
 <div class="sourceCode" id="cb45"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb45-1"><a href=""></a><span class="ex">$</span><span class="op">&gt;</span> array=<span class="kw">(</span> <span class="st">'two'</span> <span class="st">'three'</span> <span class="st">'four'</span> <span class="kw">)</span></span>
 <span id="cb45-2"><a href=""></a><span class="ex">$</span><span class="op">&gt;</span> for <span class="ex">item</span> in <span class="va">$array</span></span>
 <span id="cb45-3"><a href=""></a><span class="cf">do</span></span>
 <span id="cb45-4"><a href=""></a>  <span class="bu">echo</span> <span class="st">"</span><span class="va">$item</span><span class="st"> trees"</span></span>
-<span id="cb45-5"><a href=""></a><span class="cf">done</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<ul>
-<li>Not working, this is much better:</li>
-</ul>
+<span id="cb45-5"><a href=""></a><span class="cf">done</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
+<li><p>Not working, this is much better:</p>
 <div class="sourceCode" id="cb46"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb46-1"><a href=""></a><span class="ex">$</span><span class="op">&gt;</span> for <span class="ex">item</span> in <span class="va">${array</span><span class="op">[@]</span><span class="va">}</span></span>
 <span id="cb46-2"><a href=""></a><span class="cf">do</span></span>
 <span id="cb46-3"><a href=""></a>  <span class="bu">echo</span> <span class="st">"</span><span class="va">$item</span><span class="st"> trees"</span></span>
-<span id="cb46-4"><a href=""></a><span class="cf">done</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb46-4"><a href=""></a><span class="cf">done</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
+</ul>
 </section>
 <section id="section-5" class="slide level2">
 <h2></h2>
@@ -648,10 +626,10 @@ Thomas Förster
 <span id="cb56-2"><a href=""></a><span class="st">"README.md"</span></span>
 <span id="cb56-3"><a href=""></a><span class="va">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <ul>
-<li>Create two functions:</li>
-</ul>
+<li><p>Create two functions:</p>
 <div class="sourceCode" id="cb57"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb57-1"><a href=""></a><span class="kw">function</span><span class="fu"> create_dirs</span> <span class="ex">{}</span></span>
-<span id="cb57-2"><a href=""></a><span class="kw">function</span><span class="fu"> create_files</span> <span class="ex">{}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb57-2"><a href=""></a><span class="kw">function</span><span class="fu"> create_files</span> <span class="ex">{}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
+</ul>
 </section>
 <section id="one-solution" class="slide level2">
 <h2>One Solution</h2>

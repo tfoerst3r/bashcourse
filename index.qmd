@@ -63,10 +63,10 @@ We can modify commands by setting various **flags** (also known as `options`, `p
 
 - To make life easier we can define an alias.
 
-  ```bash
-  $> alias ll='ls -l --color=auto -g'
-  $> ll
-  ```
+    ```bash
+    $> alias ll='ls -l --color=auto -g'
+    $> ll
+    ```
 
 
 - Let's dive into a directory via change directory `cd`
@@ -182,22 +182,22 @@ We can modify commands by setting various **flags** (also known as `options`, `p
 
 - You've got a bash history
 
-``` bash
-$ history
-```
+    ``` bash
+    $ history
+    ```
 
 - You can access it via `!NUM`
 
-``` bash
-$ !656
-```
+    ``` bash
+    $ !656
+    ```
 
 - You can access your last command via
 
-``` bash
-$ !-1
-$ !!
-```
+    ``` bash
+    $ !-1
+    $ !!
+    ```
 
 ## Using Redirection
    
@@ -205,16 +205,16 @@ $ !!
 
 - Let's print something to the shell
 
-``` bash
-$> echo "Hallo world!"
-```
+    ``` bash
+    $> echo "Hallo world!"
+    ```
 
 -  Two options overwrite (create) `>` or  append `>>`.
 
- ``` bash
- $ echo "Hallo world!" > myfile.md
- $ echo "Hallo world!" >> myfile.md
- ```
+    ``` bash
+    $ echo "Hallo world!" > myfile.md
+    $ echo "Hallo world!" >> myfile.md
+    ```
 
 - How to view the content of files
 
@@ -229,52 +229,52 @@ $> echo "Hallo world!"
 
 - Let's find all files with `find`
 
-``` bash
-$> find . -type f
-```
+    ``` bash
+    $> find . -type f
+    ```
 
 - Find all markdown files
 
-``` bash
-$> mkdir folder.md
-$> touch file.md
-$> find . -name "*.md"
-$> find . -name "*.md" -type f
-$> find . -name "*.md" -type d
-```
+    ``` bash
+    $> mkdir folder.md
+    $> touch file.md
+    $> find . -name "*.md"
+    $> find . -name "*.md" -type f
+    $> find . -name "*.md" -type d
+    ```
 
 ## {}
 
 - Let's get some more information via `ls -l` using `xargs`
 
-``` bash
-$> find . -name "*.md" -type f | xargs ll
-```
+    ``` bash
+    $> find . -name "*.md" -type f | xargs ll
+    ```
 
 - Let's add a file with spaces into the mix, 
 
-``` bash
-$> touch 'a file with spaces.md'
-$> find . -name "*.md" -type f | xargs ls -l
-```
+    ``` bash
+    $> touch 'a file with spaces.md'
+    $> find . -name "*.md" -type f | xargs ls -l
+    ```
 
 - What happend?
 
-``` bash
-$> find . -name "*.md" -type f -print0 | xargs -0 ls -l
-```
+    ``` bash
+    $> find . -name "*.md" -type f -print0 | xargs -0 ls -l
+    ```
 
 - Let's find all `*.md` files which contain the word "Hallo", using `grep -l`.
 
-``` bash
-$> find . -type f -name '*.md' -print0 | xargs -0 grep -l 'Hallo'
-```
+    ``` bash
+    $> find . -type f -name '*.md' -print0 | xargs -0 grep -l 'Hallo'
+    ```
 
 - Let's get more information about those file via `ls -l`
 
-``` bash
-$> find . -type f -name '*.md' -print0 | xargs -0 grep -l 'Hallo' | xargs ls -l
-```
+    ``` bash
+    $> find . -type f -name '*.md' -print0 | xargs -0 grep -l 'Hallo' | xargs ls -l
+    ```
 
 ## Summary
 
@@ -344,20 +344,20 @@ $> echo "$array"
 
 - calculations
 
-``` bash
-$> let 'new1=3*12'; echo "$new1"
-$> new2=$((3*12)); echo "$new2"
-```
+    ``` bash
+    $> let 'new1=3*12'; echo "$new1"
+    $> new2=$((3*12)); echo "$new2"
+    ```
 
 - conditionals
 
-```bash
-$> i=0
-$> let 'i>2'; echo $? %false 1
-1
-$> let 'i<2'; echo $? %true 0
-0
-```
+    ```bash
+    $> i=0
+    $> let 'i>2'; echo $? %false 1
+    1
+    $> let 'i<2'; echo $? %true 0
+    0
+    ```
 
 ## `[[..]]` Compound Command + `if`
 
@@ -409,22 +409,22 @@ $> let 'i<2'; echo $? %true 0
 
 - Going through elements in an Array. Let's give it a try with:
 
-```bash
-$> array=( 'two' 'three' 'four' )
-$> for item in $array
-do
-  echo "$item trees"
-done
-```
+    ```bash
+    $> array=( 'two' 'three' 'four' )
+    $> for item in $array
+    do
+      echo "$item trees"
+    done
+    ```
 
 - Not working, this is much better:
 
-```bash
-$> for item in ${array[@]}
-do
-  echo "$item trees"
-done
-```
+    ```bash
+    $> for item in ${array[@]}
+    do
+      echo "$item trees"
+    done
+    ```
 
 ## {}
 
@@ -589,10 +589,10 @@ myfiles=(
 
 - Create two functions:
 
-``` bash
-function create_dirs {}
-function create_files {}
-```
+    ``` bash
+    function create_dirs {}
+    function create_files {}
+    ```
 
 ## One Solution
 
