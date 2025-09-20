@@ -221,8 +221,8 @@ We can modify commands by setting various **flags** (also known as `options`, `p
 - `cat`: concatenate, it is not an editor => go for `vim` or `nano`
 	
 	``` bash
-	$> cat file1.md
-	$> cat file1.md file2.md > combi.md
+	$> cat > fileF.md
+	$> cat myfile.md fileF.md > combi.md
 	```
 
 ## `find`, `xargs` and `grep`
@@ -236,8 +236,8 @@ We can modify commands by setting various **flags** (also known as `options`, `p
 - Find all markdown files
 
     ``` bash
-    $> mkdir folder.md
-    $> touch file.md
+    $> mkdir fileD.md
+    $> touch fileF.md
     $> find . -name "*.md"
     $> find . -name "*.md" -type f
     $> find . -name "*.md" -type d
@@ -248,7 +248,9 @@ We can modify commands by setting various **flags** (also known as `options`, `p
 - Let's get some more information via `ls -l` using `xargs`
 
     ``` bash
+    $> find . -name "*.md" -type f | ll
     $> find . -name "*.md" -type f | xargs ll
+    $> find . -name "*.md" -type f | xargs ls -l
     ```
 
 - Let's add a file with spaces into the mix, 
@@ -267,7 +269,7 @@ We can modify commands by setting various **flags** (also known as `options`, `p
 - Let's find all `*.md` files which contain the word "Hallo", using `grep -l`.
 
     ``` bash
-    $> find . -type f -name '*.md' -print0 | xargs -0 grep -l 'Hallo'
+    $> find . -type f -name '*.md' -print0 | xargs -0 grep 'Hallo'
     ```
 
 - Let's get more information about those file via `ls -l`
@@ -300,7 +302,7 @@ $> echo "$var"
 $> echo '$var'
 $> var1="Hallo"
 $> var2="world!"
-$> varN="$var1 $var2"
+$> varN="$var2 $var1 $var1 $var1 $var2"
 $> echo $varN
 ```
 
